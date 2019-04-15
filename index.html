@@ -1,18 +1,37 @@
-<!doctype html>
-<html>
-<head><title> JVJ: Knights Max Flow</title></head>
+<!doctype html><html><head>
+<title>JVJ: Knight's Max Flow</title>
 <link rel="stylesheet" href="styles.css">
-<body>
-<h1>JVJ: Knights Max Flow</h1>
-<canvas id="board" width="800" height="800"></canvas>
+</head>
+<body><h1>JVJ: Knight's Max Flow</h1>
+<h4>Time-stamp: <2019-04-15 8:00AM JVJ></h4>
+
+<canvas id="grid" width="1000" height="1000"></canvas>
+
 </body>
+<script src="draw-stuff.js"></script>
 <script>
-var canvas = document.getElementById("board");
-var context = canvas.getContext("2d");
-context.font = "30px Arial";
+
+// =====================================================  draw_title ====
+// Draw filled rect.
+function draw_title( context ) 
+{
+    context.save( );
+    context.fillStyle = 'lightgrey';
+    context.font = "30px Arial";
+    context.fillText( "Grid", 150, 150 );
+    context.restore( );
+}
+
+var canvas = document.getElementById( "grid" );
+  var context = canvas.getContext( "2d" );
+  // Draw a grid
+  draw_grid( context, 100, 100, 'white', 'yellow' );
+	context.fillStyle = "#FFFFFF";
+  
+  //=======================================================================
+  
+
+
 
 </script>
-
-
-
 </html>
