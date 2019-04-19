@@ -15,6 +15,18 @@ function draw_rect( ctx, x, y, fill)
     ctx.restore( );
 }
 
+function draw_cell(ctx, x, y, fill)
+{
+	x = x || 0;
+	y = y || 0;
+	fill = fill || "black";
+	ctx.save();
+	ctx.fillStyle = fill;
+	ctx.beginPath();
+	ctx.arc(x, y, 10, 0, 2 * Math.PI);
+	ctx.fill();
+}
+
 // =====================================================  draw_grid ====
 function draw_grid( rctx, rminor, rmajor, rstroke, rfill  ) 
 {
@@ -23,7 +35,7 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
     rctx.fillStyle = rfill;
     let width = rctx.canvas.width;
     let height = rctx.canvas.height;
-    for ( var ix = 0; ix < width; ix += rminor )
+    for ( var ix = 0; ix <= width; ix += rminor )
     {
         rctx.beginPath( );
         rctx.moveTo( ix, 0 );
@@ -32,14 +44,14 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
         rctx.stroke( );
         if ( ix % rmajor == 0 ) { rctx.fillText( ix, ix, 10 ); }
     }
-    for ( var iy = 0; iy < height; iy += rminor )
+    for ( var iy = 0; iy <= height; iy += rminor )
     {
         rctx.beginPath( );
         rctx.moveTo( 0, iy );
         rctx.lineTo( width, iy );
         rctx.lineWidth = ( iy % rmajor == 0 ) ? 0.5 : 0.5;
         rctx.stroke( );
-        if ( iy % rmajor == 0 ) {rctx.fillText( iy, 0, iy + 10 );}
+        if ( iy % rmajor == 0 ) {rctx.fillText( iy, 0, iy + 10 );} 
     }
     rctx.restore( );
 }

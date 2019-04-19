@@ -3,12 +3,13 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body><h1>JVJ: Knight's Max Flow</h1>
-<h4>Time-stamp: <2019-04-15 8:00AM JVJ></h4>
+<h4>Time-stamp: <2019-04-19 2:26AM JVJ></h4>
 
-<canvas id="grid" width="1000" height="1000"></canvas>
+<canvas id="grid" width="800" height="800"></canvas>
 
 </body>
 <script src="draw-stuff.js"></script>
+<script src="cell.js"></script>
 <script>
 
 // =====================================================  draw_title ====
@@ -25,8 +26,16 @@ function draw_title( context )
 var canvas = document.getElementById( "grid" );
   var context = canvas.getContext( "2d" );
   // Draw a grid
-  draw_grid( context, 100, 100, 'white', 'yellow' );
-	context.fillStyle = "#FFFFFF";
+  draw_grid( context, 80, 80, 'black', 'black' );
+  context.fillStyle = "#FFFFFF";
+  
+  //Draw source & sink cell
+  var source = new Cell(1, 2);
+  var sink = new Cell(8, 7);
+  
+  draw_cell(context, source.x, source.y);
+  draw_cell(context, sink.x, sink.y);
+	
   
   //=======================================================================
   
