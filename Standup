@@ -1,0 +1,38 @@
+CPSC-335 Project-1 Knight’s Max Flow Standup Status Report
+Standup Status: Start
+Team: JVJ = Jalen Jackson, Victoria Tran, Justin Castillo
+Jalen:
+1.	Completed: created repository for project files
+2.	Plan to Complete: 
+3.	Obstacles: 
+Victoria:
+1.	Completed: assisted in creating the grid
+2.	Plan to Complete: help change grid to white
+3.	Obstacles: 
+Justin:
+1.	Completed: created a 10x10 grid and transferred all reusable files
+2.	Plan to Complete: change grid fill color to white, start to think of type of algorithm to use
+3.	Obstacles: 
+
+Progress Board
+1.	Create 10x10 board
+2.	Understand/figure out what algorithm to use
+3.	Write pseudo code
+4.	Implement code
+5.	Test for errors
+***************************************************************************************************************
+6. ***NEED TO MAKE matrix, grid display, graph display (not on grid) & have the capacity showing in the cells**
+***************************************************************************************************************
+
+Working:
+1.	Grid color 
+Ready:
+1.	Basic grid design
+Done:
+1.	Transferred/edited usable files to use for this project
+Verified:
+
+Issues:
+1.	Changing grid fill color to white
+OBE:
+
