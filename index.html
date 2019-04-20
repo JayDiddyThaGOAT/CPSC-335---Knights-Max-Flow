@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body><h1>JVJ: Knight's Max Flow</h1>
-<h4>Time-stamp: <2019-04-19 2:26AM JVJ></h4>
+<h4>Time-stamp: <2019-04-20 2:26AM JVJ></h4>
 
 <canvas id="grid" width="800" height="800"></canvas>
 
@@ -11,8 +11,7 @@
 <script src="draw-stuff.js"></script>
 <script src="cell.js"></script>
 <script>
-
-// =====================================================  draw_title ====
+    
 // Draw filled rect.
 function draw_title( context ) 
 {
@@ -20,27 +19,38 @@ function draw_title( context )
     context.fillStyle = 'lightgrey';
     context.font = "30px Arial";
     context.fillText( "Grid", 150, 150 );
-    context.restore( );
+    context.restore();
 }
 
 var canvas = document.getElementById( "grid" );
-  var context = canvas.getContext( "2d" );
-  // Draw a grid
-  draw_grid( context, 80, 80, 'black', 'black' );
-  context.fillStyle = "#FFFFFF";
-  
-  //Draw source & sink cell
-  var source = new Cell(1, 2);
-  var sink = new Cell(8, 7);
-  
-  draw_cell(context, source.x, source.y);
-  draw_cell(context, sink.x, sink.y);
-	
-  
-  //=======================================================================
-  
+var context = canvas.getContext( "2d" );
+    
+// Draw a grid
+draw_grid( context, 80, 80, 'black', 'black' );
+context.fillStyle = "#FFFFFF";
 
+var cells = [];
+for (var i = 0; i < 10; i++)
+{
+    for (var j = 0; j < 10; j++)
+    {
+        var cell = new Cell(i, j);
+        cells.push(cell);
+        draw_capacity(context, cell.x, cell.y - 15, "" + cell.capacity);
+    }
+}
+  
+//Draw source & sink cell
+var source = cells.find(function(element){
+  return element.i == 1 && element.j == 2;
+});
+draw_dot(context, source.x, source.y);
+    
+var sink = cells.find(function(element){
+  return element.i == 8 && element.j == 7;
+});
+draw_dot(context, sink.x, sink.y);
 
-
+var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
 </script>
 </html>
