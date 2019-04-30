@@ -44,12 +44,12 @@ for (var i = 0; i < 10; i++)
 var source = cells.find(function(element){
   return element.i == 1 && element.j == 2;
 });
-draw_dot(context, source.x, source.y);
+draw_redDot(context, source.x, source.y);
     
 var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
-draw_dot(context, sink.x, sink.y);
+draw_redDot(context, sink.x, sink.y);
 
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
 </script>
