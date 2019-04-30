@@ -25,6 +25,16 @@ function draw_dot(ctx, x, y, fill)
 	ctx.fill();
 }
 
+function draw_redDot(ctx, x, y, fill)
+{ 
+	fill = fill || "red";
+	ctx.save();
+	ctx.fillStyle = fill;
+	ctx.beginPath();
+	ctx.arc(x, y, 10, 0, 2 * Math.PI);
+	ctx.fill();
+}
+
 function draw_capacity(ctx, x, y, txt, fill)
 {
     fill = fill || "black";
