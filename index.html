@@ -11,7 +11,7 @@
 <script src="draw-stuff.js"></script>
 <script src="cell.js"></script>
 <script>
-    
+    	
 // Draw filled rect.
 function draw_title( context ) 
 {
@@ -22,7 +22,7 @@ function draw_title( context )
     context.restore();
 }
 
-var canvas = document.getElementById( "grid" );
+var canvas = document.getElementById( "grid" ); 
 var context = canvas.getContext( "2d" );
     
 // Draw a grid
@@ -44,13 +44,54 @@ for (var i = 0; i < 10; i++)
 var source = cells.find(function(element){
   return element.i == 1 && element.j == 2;
 });
-draw_redDot(context, source.x, source.y);
+draw_dot(context, source.x, source.y);
     
 var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
-draw_redDot(context, sink.x, sink.y);
+draw_dot(context, sink.x, sink.y);
 
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
+
+/*
+alert("made it this far");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+var location = source;
+var totalEdges = 0; 
+var path = [];
+var options = [];
+//while(location.i != sink.i && location.j != sink.j) 
+{
+	for (var i = 1; i <= 8; i++)
+	{
+		options.pop() // clears array of previous contents
+	}
+	
+	//8 possible moves will be added to options list
+	options.push(new Cell(location.i+2, location.j+1));
+	options.push(new Cell(location.i+2, location.j-1));
+	options.push(new Cell(location.i+1, location.j+2));
+	options.push(new Cell(location.i+1, location.j-2));
+	options.push(new Cell(location.i-1, location.j+2));
+	options.push(new Cell(location.i-1, location.j-2));
+	options.push(new Cell(location.i-2, location.j+1));
+	options.push(new Cell(location.i-2, location.j-1));
+	
+	for (var a = 0; a < 8; a++)
+	{
+		if (options[a].i >= 0 && options[a].i < 10 && options[a].j >= 0 && options[a].j < 10
+			totalEdges++;	//keeps track of total edges made
+		else
+			options.splice(a, 1); //removes all invalid Cells from options
+	}
+	
+	//add dot to valid moves
+	for (var b = 0; b < options.length; b++)
+	{
+		 draw_redDot(context, options[b].x, options[b].y);
+	}
+}
+*//////////////////////////////////////////////////////////////////////////////////////////////////
 </script>
 </html>
