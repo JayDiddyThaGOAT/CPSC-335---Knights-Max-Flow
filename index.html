@@ -25,14 +25,12 @@ function draw_title( context )
     context.fillText( "Grid", 150, 150 );
     context.restore();
 }
-
 var canvas = document.getElementById( "grid" ); 
 var context = canvas.getContext( "2d" );
     
 // Draw a grid
 draw_grid( context, 80, 80, 'black', 'black' );
 context.fillStyle = "#FFFFFF";
-
 var cells = [];
 for (var i = 0; i < 10; i++)
 {
@@ -54,48 +52,64 @@ var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
 draw_dot(context, sink.x, sink.y);
-
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
 
-/*
-alert("made it this far");
 
-//////////////////////////////////////////////////////////////////////////////////////////
-var location = source;
 var totalEdges = 0; 
-var path = [];
-var options = [];
-//while(location.i != sink.i && location.j != sink.j) 
-{
+var icurrent = 1;
+var jcurrent = 2;
+var ipath = [];
+var jpath = [];
+var ioptions = [];
+var joptions = []
+
+//while(icurrent != sink.i && jcurrent != sink.j) 
+//{
 	for (var i = 1; i <= 8; i++)
 	{
-		options.pop() // clears array of previous contents
+		ioptions.pop(); // clears array of previous contents
+		joptions.pop();
 	}
 	
 	//8 possible moves will be added to options list
-	options.push(new Cell(location.i+2, location.j+1));
-	options.push(new Cell(location.i+2, location.j-1));
-	options.push(new Cell(location.i+1, location.j+2));
-	options.push(new Cell(location.i+1, location.j-2));
-	options.push(new Cell(location.i-1, location.j+2));
-	options.push(new Cell(location.i-1, location.j-2));
-	options.push(new Cell(location.i-2, location.j+1));
-	options.push(new Cell(location.i-2, location.j-1));
+	ioptions.push(icurrent+2);
+	ioptions.push(icurrent+2);
+	ioptions.push(icurrent+1);
+	ioptions.push(icurrent+1);
+	ioptions.push(icurrent-1);
+	ioptions.push(icurrent-1);
+	ioptions.push(icurrent-2);
+	ioptions.push(icurrent-2);
+	
+	joptions.push(jcurrent+1);
+	joptions.push(jcurrent-1);
+	joptions.push(jcurrent+2);
+	joptions.push(jcurrent-2);
+	joptions.push(jcurrent+2);
+	joptions.push(jcurrent-2);
+	joptions.push(jcurrent+1);
+	joptions.push(jcurrent-1);
 	
 	for (var a = 0; a < 8; a++)
 	{
-		if (options[a].i >= 0 && options[a].i < 10 && options[a].j >= 0 && options[a].j < 10
+		if (ioptions[a] >= 0 && ioptions[a] < 10 && joptions[a] >= 0 && joptions[a] < 10)
 			totalEdges++;	//keeps track of total edges made
 		else
-			options.splice(a, 1); //removes all invalid Cells from options
+		{
+			ioptions.splice(a, 1); //removes all invalid Cells from options
+			joptions.splice(a, 1);
+		}
 	}
 	
 	//add dot to valid moves
-	for (var b = 0; b < options.length; b++)
+	for (var b = 0; b < ioptions.length; b++)
 	{
-		 draw_redDot(context, options[b].x, options[b].y);
+		 draw_redDot(context, ioptions[b], joptions[b]);
+		 alert("(" + ioptions[b] + ", " + joptions[b] + ")");
 	}
-}
-*//////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+//}
+
 </script>
 </html>
