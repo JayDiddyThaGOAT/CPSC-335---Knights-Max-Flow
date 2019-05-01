@@ -65,51 +65,64 @@ var joptions = []
 
 //while(icurrent != sink.i && jcurrent != sink.j) 
 //{
-	for (var i = 1; i <= 8; i++)
+	for (var i = 0; i < ioptions.length; i++)
 	{
 		ioptions.pop(); // clears array of previous contents
 		joptions.pop();
 	}
 	
 	//8 possible moves will be added to options list
-	ioptions.push(icurrent+2);
-	ioptions.push(icurrent+2);
-	ioptions.push(icurrent+1);
-	ioptions.push(icurrent+1);
-	ioptions.push(icurrent-1);
-	ioptions.push(icurrent-1);
-	ioptions.push(icurrent-2);
-	ioptions.push(icurrent-2);
-	
-	joptions.push(jcurrent+1);
-	joptions.push(jcurrent-1);
-	joptions.push(jcurrent+2);
-	joptions.push(jcurrent-2);
-	joptions.push(jcurrent+2);
-	joptions.push(jcurrent-2);
-	joptions.push(jcurrent+1);
-	joptions.push(jcurrent-1);
-	
-	for (var a = 0; a < 8; a++)
+	if(icurrent+2 >= 0 && icurrent+2 <10 && jcurrent+1 >= 0 && jcurrent+1 < 10)
 	{
-		if (ioptions[a] >= 0 && ioptions[a] < 10 && joptions[a] >= 0 && joptions[a] < 10)
-			totalEdges++;	//keeps track of total edges made
-		else
-		{
-			ioptions.splice(a, 1); //removes all invalid Cells from options
-			joptions.splice(a, 1);
-		}
+		ioptions.push(icurrent+2);
+		joptions.push(jcurrent+1);
 	}
+	if(icurrent+2 >= 0 && icurrent+2 <10 && jcurrent-1 >= 0 && jcurrent-1 < 10)
+	{
+		ioptions.push(icurrent+2);
+		joptions.push(jcurrent-1);
+	}
+	if(icurrent-2 >= 0 && icurrent-2 <10 && jcurrent+1 >= 0 && jcurrent+1 < 10)
+	{
+		ioptions.push(icurrent-2);
+		joptions.push(jcurrent+1);
+	}
+	if(icurrent-2 >= 0 && icurrent-2 <10 && jcurrent-1 >= 0 && jcurrent-1 < 10)
+	{
+		ioptions.push(icurrent-2);
+		joptions.push(jcurrent-1);
+	}
+	if(icurrent+1 >= 0 && icurrent+1 <10 && jcurrent+2 >= 0 && jcurrent+2 < 10)
+	{
+		ioptions.push(icurrent+1);
+		joptions.push(jcurrent+2);
+	}
+	if(icurrent+1 >= 0 && icurrent+1 <10 && jcurrent-2 >= 0 && jcurrent-2 < 10)
+	{
+		ioptions.push(icurrent+1);
+		joptions.push(jcurrent-2);
+	}
+	if(icurrent-1 >= 0 && icurrent-1 <10 && jcurrent+2 >= 0 && jcurrent+2 < 10)
+	{
+		ioptions.push(icurrent-1);
+		joptions.push(jcurrent+2);
+	}
+	if(icurrent-1 >= 0 && icurrent-1 <10 && jcurrent-2 >= 0 && jcurrent-2 < 10)
+	{
+		ioptions.push(icurrent-1);
+		joptions.push(jcurrent-2);
+	}
+	
 	
 	//add dot to valid moves
 	for (var b = 0; b < ioptions.length; b++)
 	{
-		 draw_redDot(context, ioptions[b], joptions[b]);
-		 alert("(" + ioptions[b] + ", " + joptions[b] + ")");
-	}
-
-	
-//}
+		var current = cells.find(function(element){
+		return element.i == icurrent[b] && element.j == jcurrent[b];
+		});
+		 draw_dot(context, current.x, current.y);	//Needs to be fixed
+		 console.log("After: position " + b + " (" + ioptions[b] + ", " + joptions[b] + ")");
+	}	
 
 </script>
 </html>
