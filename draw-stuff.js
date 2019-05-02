@@ -35,7 +35,7 @@ function draw_redDot(ctx, x, y, fill)
 	ctx.fill();
 }
 
-function draw_capacity(ctx, x, y, txt, fill)
+function draw_values(ctx, x, y, txt, fill)
 {
     fill = fill || "black";
     ctx.save();
@@ -43,6 +43,18 @@ function draw_capacity(ctx, x, y, txt, fill)
     ctx.fillStyle = fill;
     ctx.textAlign = "center";
     ctx.fillText(txt, x, y);
+}
+
+function draw_line(ctx, cell_one, cell_two)
+{
+    fill = "black";
+    ctx.lineWidth = 5;
+    ctx.save();
+    
+    ctx.beginPath();
+    ctx.moveTo(cell_one.x, cell_one.y);
+    ctx.lineTo(cell_two.x, cell_two.y);
+    ctx.stroke();
 }
 
 // =====================================================  draw_grid ====

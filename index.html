@@ -4,7 +4,7 @@
 </head>
 <body><h1>JVJ: Knight's Max Flow</h1>
 <h4>Time-stamp: <2019-04-20 2:26AM JVJ></h4>
-<h3>Flow/Capacity </h3> 
+<h3>Flow    |   Capacity </h3> 
 <canvas id="grid" width="800" height="800"></canvas>
 	
 <h5>Count of Unused/Unplaced Edges: #</h5> 
@@ -38,91 +38,30 @@ for (var i = 0; i < 10; i++)
     {
         var cell = new Cell(i, j);
         cells.push(cell);
-        draw_capacity(context, cell.x, cell.y - 15, "" + cell.capacity);
+        draw_values(context, cell.x, cell.y - 15, "" + cell.flow + "\t|\t" + cell.capacity);
     }
 }
   
-//Draw source & sink cell
+//Draw source & sink cells
 var source = cells.find(function(element){
   return element.i == 1 && element.j == 2;
 });
-draw_dot(context, source.x, source.y);
+draw_redDot(context, source.x, source.y);
+console.log(source.getNeighborsFrom(cells));
     
 var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
-draw_dot(context, sink.x, sink.y);
+draw_redDot(context, sink.x, sink.y);
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
 
+var neighbors = source.getNeighborsFrom(cells);
+for (var i = 0; i < neighbors.length; i++)
+{
+    draw_dot(context, neighbors[i].x, neighbors[i].y);
+}
+    
 
-var totalEdges = 0; 
-var icurrent = 1;
-var jcurrent = 2;
-var ipath = [];
-var jpath = [];
-var ioptions = [];
-var joptions = []
-
-//while(icurrent != sink.i && jcurrent != sink.j) 
-//{
-	for (var i = 0; i < ioptions.length; i++)
-	{
-		ioptions.pop(); // clears array of previous contents
-		joptions.pop();
-	}
-	
-	//8 possible moves will be added to options list
-	if(icurrent+2 >= 0 && icurrent+2 <10 && jcurrent+1 >= 0 && jcurrent+1 < 10)
-	{
-		ioptions.push(icurrent+2);
-		joptions.push(jcurrent+1);
-	}
-	if(icurrent+2 >= 0 && icurrent+2 <10 && jcurrent-1 >= 0 && jcurrent-1 < 10)
-	{
-		ioptions.push(icurrent+2);
-		joptions.push(jcurrent-1);
-	}
-	if(icurrent-2 >= 0 && icurrent-2 <10 && jcurrent+1 >= 0 && jcurrent+1 < 10)
-	{
-		ioptions.push(icurrent-2);
-		joptions.push(jcurrent+1);
-	}
-	if(icurrent-2 >= 0 && icurrent-2 <10 && jcurrent-1 >= 0 && jcurrent-1 < 10)
-	{
-		ioptions.push(icurrent-2);
-		joptions.push(jcurrent-1);
-	}
-	if(icurrent+1 >= 0 && icurrent+1 <10 && jcurrent+2 >= 0 && jcurrent+2 < 10)
-	{
-		ioptions.push(icurrent+1);
-		joptions.push(jcurrent+2);
-	}
-	if(icurrent+1 >= 0 && icurrent+1 <10 && jcurrent-2 >= 0 && jcurrent-2 < 10)
-	{
-		ioptions.push(icurrent+1);
-		joptions.push(jcurrent-2);
-	}
-	if(icurrent-1 >= 0 && icurrent-1 <10 && jcurrent+2 >= 0 && jcurrent+2 < 10)
-	{
-		ioptions.push(icurrent-1);
-		joptions.push(jcurrent+2);
-	}
-	if(icurrent-1 >= 0 && icurrent-1 <10 && jcurrent-2 >= 0 && jcurrent-2 < 10)
-	{
-		ioptions.push(icurrent-1);
-		joptions.push(jcurrent-2);
-	}
-	
-	
-	//add dot to valid moves
-	for (var b = 0; b < ioptions.length; b++)
-	{
-		var current = cells.find(function(element){
-		return element.i == icurrent[b] && element.j == jcurrent[b];
-		});
-		 draw_dot(context, current.x, current.y);	//Needs to be fixed
-		 console.log("After: position " + b + " (" + ioptions[b] + ", " + joptions[b] + ")");
-	}	
-
+    
 </script>
 </html>
