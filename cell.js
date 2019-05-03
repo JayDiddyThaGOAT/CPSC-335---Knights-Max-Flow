@@ -10,6 +10,7 @@ class Cell
         
         this.flow = 0;
         this.capacity = Math.floor(Math.random() * 31 / 2) * 2;
+        this.marked = false;
 	}
     
     getNeighborsFrom(cells)

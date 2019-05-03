@@ -46,22 +46,53 @@ for (var i = 0; i < 10; i++)
 var source = cells.find(function(element){
   return element.i == 1 && element.j == 2;
 });
-draw_redDot(context, source.x, source.y);
-console.log(source.getNeighborsFrom(cells));
-    
 var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
-draw_redDot(context, sink.x, sink.y);
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
-
-var neighbors = source.getNeighborsFrom(cells);
-for (var i = 0; i < neighbors.length; i++)
+    
+function placeEdge(a, b)
 {
-    draw_dot(context, neighbors[i].x, neighbors[i].y);
+    draw_line(context, a, b);
+    if (!(a === source || a === sink))
+    {
+        draw_dot(context, a.x, a.y);
+        a.marked = true;
+    }
+    
+    if (!(b === source || b === sink))
+    {
+        draw_dot(context, b.x, b.y);
+        b.marked = true;
+    }
 }
     
-
+function buildPath(root, goal, move)
+{
+    if (root === goal)
+        return;
     
+    if (move > moves)
+        return;
+    
+    console.log(move);
+    
+    var rootNeighbors = root.getNeighborsFrom(cells);
+    if (rootNeighbors.length <= 0)
+        return;
+    rootNeighbors = rootNeighbors.filter(function(element){
+        return !element.marked || element === source || element === sink;
+    });
+    
+    var randomNeighbor = rootNeighbors[Math.floor(Math.random() * rootNeighbors.length)];
+    placeEdge(root, randomNeighbor);
+    buildPath(randomNeighbor, goal, ++move);
+    
+}
+    
+buildPath(source, sink, 0);
+draw_redDot(context, source.x, source.y);
+draw_redDot(context, sink.x, sink.y);
+
 </script>
 </html>
