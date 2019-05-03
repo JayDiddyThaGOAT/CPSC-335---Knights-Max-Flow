@@ -67,19 +67,29 @@ function placeEdge(a, b)
     }
 }
 
-
-function buildGraph(root, goal)
+function buildGraph(root, goal, pathCount)
 {
+    pathCount = pathCount || 1;
     var visitedQueue = [root];
     var currentMove = 0;
+    
     while (visitedQueue.length > 0)
     {
         var current = visitedQueue.pop();
         
         if (current === goal)
         {
-            console.log(currentMove);
+            console.log(currentMove + " out of " + moves);
+            console.log(pathCount);
             return;
+        }
+        else
+        {
+            if (currentMove === moves && current != goal)
+            {
+                buildGraph(root, goal, pathCount + 1);
+                return;
+            }
         }
         
         var neighbors = current.getNeighborsFrom(cells);
@@ -96,6 +106,8 @@ function buildGraph(root, goal)
         current = next;
         visitedQueue.push(next);
     }
+    
+    
 }
 
 buildGraph(source, sink);
