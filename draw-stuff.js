@@ -55,18 +55,8 @@ function draw_line(ctx, cell_one, cell_two)
     ctx.beginPath();
     ctx.moveTo(cell_one.x, cell_one.y);
     ctx.lineTo(cell_two.x, cell_two.y);
-   
     
-    //Arrow
-    var xMid = (cell_one.x + cell_two.x) / 2;
-    var yMid = (cell_one.y + cell_two.y) / 2;
-    ctx.moveTo(xMid, yMid);
-    ctx.lineTo(xMid + 15, yMid + 15);
-     ctx.lineTo(xMid - 15, yMid - 15);
-    
-    
-     ctx.stroke();
-    
+    ctx.stroke();
 }
 
 // =====================================================  draw_grid ====

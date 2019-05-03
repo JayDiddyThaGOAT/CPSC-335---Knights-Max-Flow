@@ -66,31 +66,39 @@ function placeEdge(a, b)
         b.marked = true;
     }
 }
-    
-function buildPath(root, goal, move)
+
+
+function buildGraph(root, goal)
 {
-    if (root === goal)
-        return;
-    
-    if (move > moves)
-        return;
-    
-    console.log(move);
-    
-    var rootNeighbors = root.getNeighborsFrom(cells);
-    if (rootNeighbors.length <= 0)
-        return;
-    rootNeighbors = rootNeighbors.filter(function(element){
-        return !element.marked || element === source || element === sink;
-    });
-    
-    var randomNeighbor = rootNeighbors[Math.floor(Math.random() * rootNeighbors.length)];
-    placeEdge(root, randomNeighbor);
-    buildPath(randomNeighbor, goal, ++move);
-    
+    var visitedQueue = [root];
+    var currentMove = 0;
+    while (visitedQueue.length > 0)
+    {
+        var current = visitedQueue.pop();
+        
+        if (current === goal)
+        {
+            console.log(currentMove);
+            return;
+        }
+        
+        var neighbors = current.getNeighborsFrom(cells);
+        neighbors = neighbors.filter(function(element){
+           return element != root; 
+        });
+        var next = neighbors[Math.floor(Math.random() * neighbors.length)];
+        
+        if (!(current.marked && next.marked))
+        {
+            placeEdge(current, next);
+            currentMove++;
+        }
+        current = next;
+        visitedQueue.push(next);
+    }
 }
-    
-buildPath(source, sink, 0);
+
+buildGraph(source, sink);
 draw_redDot(context, source.x, source.y);
 draw_redDot(context, sink.x, sink.y);
 
