@@ -11,6 +11,7 @@ class Cell
         this.flow = 0;
         this.capacity = Math.floor(Math.random() * 31 / 2) * 2;
         this.marked = false;
+		this.seen = false;
 	}
     
     getNeighborsFrom(cells)
@@ -25,7 +26,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -37,7 +38,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -49,7 +50,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -61,7 +62,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -74,7 +75,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -86,7 +87,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -98,7 +99,7 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
@@ -110,10 +111,15 @@ class Cell
                 return element.i == i && element.j == j;
             });
             
-            if (cell != null)
+            if (cell != null && cell.marked == false)
                 neighbors.push(cell);
         }
         
         return neighbors;
     }
+	
+	printCell()
+	{
+			return (" (" + this.i + ", " + this.j + ") ");
+	}
 }
