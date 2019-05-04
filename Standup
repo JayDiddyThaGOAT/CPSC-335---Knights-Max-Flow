@@ -2,17 +2,17 @@ CPSC-335 Project-1 Knight’s Max Flow Standup Status Report
 Standup Status: Start
 Team: JVJ = Jalen Jackson, Victoria Tran, Justin Castillo
 Jalen:
-1.	Completed: created repository for project files
-2.	Plan to Complete: 
+1.	Completed: Created Grid, lines and algorithm to travel from source to sink
+2.	Plan to Complete: make list to keep track of edges
 3.	Obstacles: 
 Victoria:
-1.	Completed: assisted in creating the grid
-2.	Plan to Complete: help change grid to white
+1.	Completed: studying and explaining Ford Fulkerson algorithm
+2.	Plan to Complete: 
 3.	Obstacles: 
 Justin:
-1.	Completed: created a 10x10 grid and transferred all reusable files
-2.	Plan to Complete: change grid fill color to white, start to think of type of algorithm to use
-3.	Obstacles: 
+1.	Completed: Created knight movement and assisted in algorithm construction
+2.	Plan to Complete: Big-O analysis
+3.	Obstacles: understanding how many times the system runs its while loops
 
 Progress Board
 1.	Create 10x10 board
@@ -20,19 +20,19 @@ Progress Board
 3.	Write pseudo code
 4.	Implement code
 5.	Test for errors
-***************************************************************************************************************
-6. ***NEED TO MAKE matrix, grid display, graph display (not on grid) & have the capacity showing in the cells**
-***************************************************************************************************************
+6.  Make matrix, grid display, graph display (not on grid) & have the capacity showing in the cells
 
 Working:
-1.	Grid color 
+1.  Big-O analysis
+2.  Algorithm
 Ready:
-1.	Basic grid design
+1.	
 Done:
-1.	Transferred/edited usable files to use for this project
+1.	Grid color 
+2.  Grid design
+3.  Path found from source to sink
+4.  Arrows from path	
 Verified:
 
 Issues:
-1.	Changing grid fill color to white
-OBE:
 
