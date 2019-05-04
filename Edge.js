@@ -28,4 +28,19 @@ class Edge
 			draw_dot(context, this.secondCell.x, this.secondCell.y);
 		}
 	}
+    
+    displayFlowAndCapacity()
+    {
+        var fontSize = 14;
+        context.font = fontSize + "px Arial";
+        context.fillStyle = "#FF0000";
+        
+        var offsetMag = context.lineWidth + fontSize;
+        var offsetX = -offsetMag * (this.secondCell.i - this.firstCell.i);
+        var offsetY = -offsetMag * (this.secondCell.j - this.secondCell.j);
+        var midPointX = (this.firstCell.x + this.secondCell.x) / 2;
+        var midPointY = (this.firstCell.y + this.secondCell.y) / 2;
+        
+        context.fillText(this.flow + "/" + this.capacity, midPointX - offsetX, midPointY - offsetY);
+    }
 }

@@ -30,8 +30,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i - 2;
-        var j = this.j - 1;
+        i = this.i - 2;
+        j = this.j - 1;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -42,8 +42,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i + 2;
-        var j = this.j - 1;
+        i = this.i + 2;
+        j = this.j - 1;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -54,8 +54,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i - 2;
-        var j = this.j + 1;
+        i = this.i - 2;
+        j = this.j + 1;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -67,8 +67,8 @@ class Cell
         }
         
         
-        var i = this.i + 1;
-        var j = this.j + 2;
+        i = this.i + 1;
+        j = this.j + 2;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -79,8 +79,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i - 1;
-        var j = this.j - 2;
+        i = this.i - 1;
+        j = this.j - 2;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -91,8 +91,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i + 1;
-        var j = this.j - 2;
+        i = this.i + 1;
+        j = this.j - 2;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
@@ -103,8 +103,8 @@ class Cell
                 neighbors.push(cell);
         }
         
-        var i = this.i - 1;
-        var j = this.j + 2;
+        i = this.i - 1;
+        j = this.j + 2;
         if (i >= 0 && i < 10 && j >= 0 && j < 10)
         {
             var cell = cells.find(function(element){
