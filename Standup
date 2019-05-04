@@ -10,7 +10,7 @@ Victoria:
 2.	Plan to Complete: Algorithm paper, create Readme
 3.	Obstacles: implementing the Ford Fulkerson algorithm
 Justin:
-1.	Completed: Created knight movement and assisted in algorithm construction
+1.	Completed: Created knight movement and cleaned/finished traversing algorithm
 2.	Plan to Complete: Big-O analysis
 3.	Obstacles: understanding how many times the system runs its while loops
 
@@ -23,16 +23,14 @@ Progress Board
 6.  Make matrix, grid display, graph display (not on grid) & have the capacity showing in the cells
 
 Working:
-1.  Big-O analysis
-2.  Algorithm
-Ready:
-1.	
+1.  completing Big-O Analysis
+2.  finishing and cleaning up code
 Done:
 1.	Grid color 
 2.  Grid design
 3.  Path found from source to sink
 4.  Arrows from path	
-Verified:
 
 Issues:
-
+  On occasion, the program will fail and somehow enter an infinite loop. To resolve the situation, the system is refreshed completely
+  so it can restart from a fresh point again.
