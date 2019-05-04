@@ -14,6 +14,7 @@
 </body>
 <script src="draw-stuff.js"></script>
 <script src="cell.js"></script>
+<script src="Edge.js"></script>
 <script>
     	
 // Draw filled rect.
@@ -51,7 +52,7 @@ var sink = cells.find(function(element){
 });
 var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
     
-function placeEdge(a, b)
+/*function placeEdge(a, b)
 {
     draw_line(context, a, b);
     if (!(a === source || a === sink))
@@ -65,14 +66,17 @@ function placeEdge(a, b)
         draw_dot(context, b.x, b.y);
         b.marked = true;
     }
-}
+}*/
 
 function buildGraph(root, goal, pathCount)
 {
     pathCount = pathCount || 1;
     var visitedQueue = [root];
+	var edges = [];
     var currentMove = 0;
     
+
+	
     while (visitedQueue.length > 0)
     {
         var current = visitedQueue.pop();
@@ -97,10 +101,11 @@ function buildGraph(root, goal, pathCount)
            return element != root; 
         });
         var next = neighbors[Math.floor(Math.random() * neighbors.length)];
+		nextEdge = new Edge(current, next, 0);
         
         if (!(current.marked && next.marked))
         {
-            placeEdge(current, next);
+            nextEdge.placeEdge();
             currentMove++;
         }
         current = next;
