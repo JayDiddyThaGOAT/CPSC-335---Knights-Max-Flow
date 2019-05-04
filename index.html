@@ -30,8 +30,6 @@ var canvas = document.getElementById( "grid" );
 var context = canvas.getContext( "2d" );
     
 // Draw a grid
-draw_grid( context, 80, 80, 'black', 'black' );
-context.fillStyle = "#FFFFFF";
 var cells = [];
 for (var i = 0; i < 10; i++)
 {
@@ -39,7 +37,7 @@ for (var i = 0; i < 10; i++)
     {
         var cell = new Cell(i, j);
         cells.push(cell);
-        draw_values(context, cell.x, cell.y - 15, "" + cell.flow + "\t|\t" + cell.capacity);
+        //draw_values(context, cell.x, cell.y - 15, "" + cell.flow + "\t|\t" + cell.capacity);
     }
 }
   
@@ -50,72 +48,115 @@ var source = cells.find(function(element){
 var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
-var moves = Math.floor((Math.random() * (30 - 15 + 1)) + 15);
-    
-/*function placeEdge(a, b)
-{
-    draw_line(context, a, b);
-    if (!(a === source || a === sink))
-    {
-        draw_dot(context, a.x, a.y);
-        a.marked = true;
-    }
-    
-    if (!(b === source || b === sink))
-    {
-        draw_dot(context, b.x, b.y);
-        b.marked = true;
-    }
-}*/
+var moves = Math.floor((Math.random() * (15)) + 15);
 
-function buildGraph(root, goal, pathCount)
+
+
+
+function buildGraph(root, goal)
 {
-    pathCount = pathCount || 1;
-    var visitedQueue = [root];
+    var seen = 0;
 	var edges = [];
     var currentMove = 0;
-    
-
+    var current = root;	
+	current.marked = true;
+	var END = 0;
+	var needToReset = false;
+	if (root.capacity == 0)
+		needToReset = true;
 	
-    while (visitedQueue.length > 0)
+	while(current != goal)
     {
-        var current = visitedQueue.pop();
-        
-        if (current === goal)
-        {
-            console.log(currentMove + " out of " + moves);
-            console.log(pathCount);
-            return;
-        }
-        else
-        {
-            if (currentMove === moves && current != goal)
+		if (currentMove === moves || needToReset)//failed path, need to reset
             {
-                buildGraph(root, goal, pathCount + 1);
-                return;
-            }
-        }
-        
+				currentMove = 0
+				current = root;
+				for(var i = 0; i < edges.length; i++)
+				{
+					edges[i].marked = false;
+					console.log(edges[i].firstCell.printCell() + " -> " + edges[i].secondCell.printCell());
+				}
+				edges = [];
+				current.marked = true;
+				needToReset = false;
+				console.log("Failed, reset");
+            }       
+		
         var neighbors = current.getNeighborsFrom(cells);
         neighbors = neighbors.filter(function(element){
            return element != root; 
         });
-        var next = neighbors[Math.floor(Math.random() * neighbors.length)];
-		nextEdge = new Edge(current, next, 0);
-        
-        if (!(current.marked && next.marked))
-        {
-            nextEdge.placeEdge();
-            currentMove++;
-        }
+		
+		if(neighbors.length > 0)
+		{
+        var next;
+		var min = 34;
+		for(var a = 0; a < neighbors.length; a++)
+		{
+			if(neighbors[a].seen == false)
+			{
+				seen++;
+				neighbors[a].seen = true;
+			}
+			if(neighbors[a].capacity < min && neighbors[a].capacity != 0)
+			{
+				next = neighbors[a];
+				min = next.capacity;
+			}
+		}
+		nextEdge = new Edge(current, next);
+		edges.push(nextEdge);
+		
+        currentMove++;
         current = next;
-        visitedQueue.push(next);
+		current.marked = true;
+		}
+		else
+		{
+			needToReset = true;
+		}
+		
+		END++;
+		if(END == 700)
+		{
+			location.reload(true);
+			return;
+		}
+		
     }
-    
-    
+	
+	var maxFlow = edges[0].capacity; 
+	console.log("flow starts off as " + maxFlow);
+	for(var i = 0; i < edges.length; i++)
+	{
+			edges[i].placeEdge();
+			if(edges[i].capacity < maxFlow){
+				maxFlow = edges[i].capacity;
+				console.log("flow changed to " + maxFlow);
+				}
+	}
+	edges[0].firstCell.flow = maxFlow;
+	for(var z = 0; z < edges.length; z++)
+	{
+		edges[z].flow = maxFlow;
+		edges[z].secondCell.flow = maxFlow;
+	}
+		
+	console.log(currentMove + " out of " + moves);
+	console.log("Flow: " + maxFlow);
+	console.log("Count of unused edges: " + (seen - edges.length - 1));
 }
 
 buildGraph(source, sink);
+
+for(var i = 0; i < cells.length; i++)
+{
+    var cell = cells[i];
+    draw_values(context, cell.x, cell.y - 15, "" + cell.flow + "\t|\t" + cell.capacity);
+}
+
+draw_grid( context, 80, 80, 'black', 'black' );
+context.fillStyle = "#FFFFFF";
 draw_redDot(context, source.x, source.y);
 draw_redDot(context, sink.x, sink.y);
 
