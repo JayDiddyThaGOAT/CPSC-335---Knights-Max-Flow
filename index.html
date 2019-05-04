@@ -3,13 +3,10 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body><h1>JVJ: Knight's Max Flow</h1>
-<h4>Time-stamp: <2019-04-20 2:26AM JVJ></h4>
-<h3>Flow    |   Capacity </h3> 
+<h4>Time-stamp: <2019-05-04 12:26PM JVJ></h4>
+<font size="+2"> <h5 id="flowVal">Current Flow Value: </h5> 
 <canvas id="grid" width="800" height="800"></canvas>
-	
-<h5>Count of Unused/Unplaced Edges: #</h5> 
-<h6>Current Flow Value: 0  (IF SRC HAS NOT BEEN CONNECTED TO SINK IT IS 0)</h5> 
-
+<font size="+3"><h6 id="edgeCount">Count of Unused/Unplaced Edges: </h6>
 
 </body>
 <script src="draw-stuff.js"></script>
@@ -49,10 +46,6 @@ var sink = cells.find(function(element){
   return element.i == 8 && element.j == 7;
 });
 var moves = Math.floor((Math.random() * (15)) + 15);
-
-
-
-
 function buildGraph(root, goal)
 {
     var seen = 0;
@@ -144,21 +137,19 @@ function buildGraph(root, goal)
 		
 	console.log(currentMove + " out of " + moves);
 	console.log("Flow: " + maxFlow);
-	console.log("Count of unused edges: " + (seen - edges.length - 1));
+	document.getElementById("flowVal").innerHTML = ("Current Flow Value: " + maxFlow);
+    document.getElementById("edgeCount").innerHTML=("Count of unused edges: " + (seen - edges.length - 1));
 }
 
 buildGraph(source, sink);
-
 for(var i = 0; i < cells.length; i++)
 {
     var cell = cells[i];
-    draw_values(context, cell.x, cell.y - 15, "" + cell.flow + "\t|\t" + cell.capacity);
+    draw_values(context, cell.x, cell.y - 15, "\t\t" + cell.capacity);
 }
-
 draw_grid( context, 80, 80, 'black', 'black' );
 context.fillStyle = "#FFFFFF";
 draw_redDot(context, source.x, source.y);
 draw_redDot(context, sink.x, sink.y);
-
 </script>
 </html>
