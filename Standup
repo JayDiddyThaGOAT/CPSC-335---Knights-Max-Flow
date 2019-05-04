@@ -6,9 +6,9 @@ Jalen:
 2.	Plan to Complete: make list to keep track of edges
 3.	Obstacles: 
 Victoria:
-1.	Completed: studying and explaining Ford Fulkerson algorithm
-2.	Plan to Complete: 
-3.	Obstacles: 
+1.	Completed: research Ford Fulkerson algorithm, assisted flow algorithm construction
+2.	Plan to Complete: Algorithm paper, create Readme
+3.	Obstacles: implementing the Ford Fulkerson algorithm
 Justin:
 1.	Completed: Created knight movement and assisted in algorithm construction
 2.	Plan to Complete: Big-O analysis
