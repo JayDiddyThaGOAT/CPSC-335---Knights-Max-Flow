@@ -17,13 +17,10 @@ JVJ = Jalen Jackson, Victoria Tran, Justin Castillo
 * sampleInvocation.png
 * Standup.docx
 
-## Setup and Installation: 
-Gmail blocked us from sending a JS file. Nevertheless, here is the necessary steps to setup our project.
-1. In 335-p1_JVJ folder, open  assets folder
-2. Open draw-stuff.txt
-3. Go to 'File' -> 'Save as' 
-4. Rename file to draw-stuff.js *AND* change 'Save as type' to "All files"
-5. Save
+## Installation: 
+1. Clone this repository through Github or Download the ZIP
+2. Open the folder by extracting the ZIP or double-clicking the folder
+3. Double-click the **index.html** file
 
 ## Features
 * Creates a 10x10 graph that has a specified location for the source and the sink
